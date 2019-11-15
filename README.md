@@ -1,2 +1,3 @@
 # Pendulum
-Pendulum simulation
+## Introduction
+A simple pendulum simulation using Newton's second law.
