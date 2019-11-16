@@ -1,16 +1,33 @@
 class Plotter {
-    constructor(pendulum, config) {
+    constructor(config) {
+        let mass = random(1, 4);
+        let filLongueur = 6;
+        let theta0 = PI / 5;
+
         this.config   = config;
-        this.pendulum = pendulum;
+        this.pendulum = [
+            new Pendulum(mass, filLongueur, theta0, 'real' ,          'rgba(0,0,255, 0.5)', 0, 0, 0, 0),
+            new Pendulum(mass, filLongueur, theta0, 'eulerExplicite', 'rgba(0,255,0, 0.5)', 0, 0, 0, 0),
+            new Pendulum(mass, filLongueur, theta0, 'rungeKutta4',    'rgba(255,0,0, 0.5)', 0, 0, 0, 0)
+        ];
     }
 
 
-    update(ellapsedT) {
-        this.pendulum.update();
+    update(dt) {
+        for (let i = 0; i < this.pendulum.length; i++) {
+            this.pendulum[i].update(dt, this.config.speedMultiplier);
+        }
     }
 
     draw() {
-        this.pendulum.draw(this);
+        for (let i = 0; i < this.pendulum.length; i++) {
+            this.pendulum[i].draw(this);
+        }
+
+        let centerPos = this.computeForXY(0, 0);
+        noStroke();
+        fill('white')
+        ellipse(centerPos.x, centerPos.y, 10, 10);
 
         if(this.config.displayGrid) {
             let center    = this.computeForXY(0, 0);

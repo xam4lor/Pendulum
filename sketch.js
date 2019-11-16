@@ -10,13 +10,13 @@ const config = {
 
 
 let beginDate = Date.now();
+let currentDate = beginDate;
 let plotter;
 
 function setup() {
 	createCanvas(windowWidth * 0.99, windowHeight * 0.99);
 
 	plotter = new Plotter(
-		new Pendulum(random(0.1, 5), 6, PI / 4, 0, 0, 0, 0),
 		{
 			scale : { // graph from x units on each side
 				x : 10,
@@ -27,15 +27,16 @@ function setup() {
 				x:  0,
 				y: -3
 			},
-			displayGrid: false
+			displayGrid: false,
+			speedMultiplier: 1
 		}
 	);
 }
 
 function draw() {
 	let cr = Date.now();
-	let ellapsedT = cr - beginDate;
-	beginDate = cr;
+	let ellapsedT = cr - currentDate;
+	currentDate = cr;
 
 	background(0);
 	fill(255);
