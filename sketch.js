@@ -1,7 +1,7 @@
 // CUSTOM CONFIG
 const config = {
 	massDrawSize  : 15,			// drawing radius of a particle
-	simuSpeed: 1,
+	simuSpeed: 2,
 	plotter: {
 		scale : { // graph from x units on each side
 			x : 10,

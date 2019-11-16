@@ -5,6 +5,11 @@ class Pendulum {
 
         this.color = color;
         this.simuMethod = simuMethod;
+        if(simuMethod == "real")
+            if(theta0 > 1)
+                console.error(`The pendulum real simulation is only valuable if theta = ${theta0} << 1 rad`);
+            else if(theta0 > 0.1)
+                console.warn(`The pendulum real simulation is a good approximation if theta = ${theta0} < 0.1 rad`);
 
         this.theta0 = theta0;
         this.omega0 = 0;

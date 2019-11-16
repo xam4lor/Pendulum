@@ -4,7 +4,7 @@ class Plotter {
 
         let mass = random(1, 4);
         let filLongueur = 5;
-        let theta0 = PI / 5;
+        let theta0 = 0.2;
 
         this.pendulum = [
             new Pendulum(mass, filLongueur, theta0, 'real' ,          'rgba(0,0,255,   0.5)', 0, 0, 0, 0),
@@ -35,6 +35,8 @@ class Plotter {
 
         fill('rgb(230,230,230)');
         textSize(17);
+        text(`Speed = x${config.simuSpeed}`, width - 100, 55-30);
+        text(`Frottements off`, width - 125, 80-30);
         text('  Simulation exacte', 17, 55-30);
         text('  Méthode d\'Euler explicite', 17, 80-30);
         text('  Méthode de Runge-Kutta 4', 17, 105-30);
