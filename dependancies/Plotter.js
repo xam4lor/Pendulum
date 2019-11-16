@@ -1,10 +1,11 @@
 class Plotter {
     constructor(config) {
+        this.config   = config;
+
         let mass = random(1, 4);
-        let filLongueur = 6;
+        let filLongueur = 0.6 * config.scale.y;
         let theta0 = PI / 5;
 
-        this.config   = config;
         this.pendulum = [
             new Pendulum(mass, filLongueur, theta0, 'real' ,          'rgba(0,0,255, 0.5)', 0, 0, 0, 0),
             new Pendulum(mass, filLongueur, theta0, 'eulerExplicite', 'rgba(0,255,0, 0.5)', 0, 0, 0, 0),
