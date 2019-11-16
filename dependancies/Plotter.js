@@ -20,15 +20,28 @@ class Plotter {
     }
 
     draw() {
+        // DRAW ALL PENDULUMS
         for (let i = 0; i < this.pendulum.length; i++) {
             this.pendulum[i].draw(this);
         }
 
+        // DRAW CENTER POINT
         let centerPos = this.computeForXY(0, 0);
         noStroke();
-        fill('white')
+        fill('rgb(180,180,180)');
         ellipse(centerPos.x, centerPos.y, 10, 10);
 
+        fill('rgb(230,230,230)');
+        textSize(17);
+        text('  Simulation exacte', 17, 55-30);
+        text('  Méthode d\'Euler explicite', 17, 80-30);
+        text('  Méthode de Runge-Kutta 4', 17, 105-30);
+
+        fill('rgba(0,0,255, 0.5)');text('O', 3, 56-30);
+        fill('rgba(0,255,0, 0.5)');text('O', 3, 81-30);
+        fill('rgba(255,0,0, 0.5)');text('O', 3, 106-30);
+
+        // CENTER GRID
         if(this.config.displayGrid) {
             let center    = this.computeForXY(0, 0);
             let allPos    = this.computeForXY(
