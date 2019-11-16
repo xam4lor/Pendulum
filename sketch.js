@@ -1,7 +1,19 @@
 // CUSTOM CONFIG
 const config = {
 	massDrawSize  : 15,			// drawing radius of a particle
-	particleSMult : 0.1,		// multiplier of the particle speed
+	simuSpeed: 1,
+	plotter: {
+		scale : { // graph from x units on each side
+			x : 10,
+			y : 10,
+			squareByX : true
+		},
+		offset : {
+			x:  0,
+			y: -3
+		},
+		displayGrid: false
+	}
 }
 
 
@@ -16,21 +28,7 @@ let plotter;
 function setup() {
 	createCanvas(windowWidth * 0.99, windowHeight * 0.99);
 
-	plotter = new Plotter(
-		{
-			scale : { // graph from x units on each side
-				x : 10,
-				y : 10,
-				squareByX : true
-			},
-			offset : {
-				x:  0,
-				y: -3
-			},
-			displayGrid: false,
-			speedMultiplier: 1
-		}
-	);
+	plotter = new Plotter(config.plotter);
 }
 
 function draw() {

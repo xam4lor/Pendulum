@@ -3,20 +3,21 @@ class Plotter {
         this.config   = config;
 
         let mass = random(1, 4);
-        let filLongueur = 0.6 * config.scale.y;
+        let filLongueur = 5;
         let theta0 = PI / 5;
 
         this.pendulum = [
-            new Pendulum(mass, filLongueur, theta0, 'real' ,          'rgba(0,0,255, 0.5)', 0, 0, 0, 0),
-            new Pendulum(mass, filLongueur, theta0, 'eulerExplicite', 'rgba(0,255,0, 0.5)', 0, 0, 0, 0),
-            new Pendulum(mass, filLongueur, theta0, 'rungeKutta4',    'rgba(255,0,0, 0.5)', 0, 0, 0, 0)
+            new Pendulum(mass, filLongueur, theta0, 'real' ,          'rgba(0,0,255,   0.5)', 0, 0, 0, 0),
+            new Pendulum(mass, filLongueur, theta0, 'eulerExplicite', 'rgba(0,255,0,   0.5)', 0, 0, 0, 0),
+            new Pendulum(mass, filLongueur, theta0, 'rungeKutta4',    'rgba(255,0,0,   0.5)', 0, 0, 0, 0),
+            new Pendulum(mass, filLongueur, theta0, 'verlet',         'rgba(255,255,0, 0.5)', 0, 0, 0, 0)
         ];
     }
 
 
     update(dt) {
         for (let i = 0; i < this.pendulum.length; i++) {
-            this.pendulum[i].update(dt, this.config.speedMultiplier);
+            this.pendulum[i].update(dt * config.simuSpeed);
         }
     }
 
@@ -37,10 +38,12 @@ class Plotter {
         text('  Simulation exacte', 17, 55-30);
         text('  Méthode d\'Euler explicite', 17, 80-30);
         text('  Méthode de Runge-Kutta 4', 17, 105-30);
+        text('  Méthode de Verlet', 17, 130-30);
 
-        fill('rgba(0,0,255, 0.5)');text('O', 3, 56-30);
-        fill('rgba(0,255,0, 0.5)');text('O', 3, 81-30);
-        fill('rgba(255,0,0, 0.5)');text('O', 3, 106-30);
+        fill('rgba(0,0,255,   0.5)');text('O', 3, 56-30);
+        fill('rgba(0,255,0,   0.5)');text('O', 3, 81-30);
+        fill('rgba(255,0,0,   0.5)');text('O', 3, 106-30);
+        fill('rgba(255,255,0, 0.5)');text('O', 3, 130-30);
 
         // CENTER GRID
         if(this.config.displayGrid) {
