@@ -70,27 +70,21 @@ class Pendulum {
         if(this.simuMethod == 'real') {
             let t = (Date.now() - beginDate) / 1000;
             this.theta = this.getThetaReal(t * speedMul);
-
-            this.pos.x =  this.l * Math.sin(this.theta);
-            this.pos.y = -this.l * Math.cos(this.theta);
         }
         else if(this.simuMethod == 'eulerExplicite') {
             dt *= speedMul;
             this.theta += this.omega * dt;
             this.omega += this.getOmegaEulerExpl(dt, this.theta, this.omega);
-
-            this.pos.x =  this.l * Math.sin(this.theta);
-            this.pos.y = -this.l * Math.cos(this.theta);
         }
         else if(this.simuMethod == 'rungeKutta4') {
             dt *= speedMul;
             let ans = this.getOandTRK(dt, this.theta, this.omega, 4);
             this.theta += ans.newTheta;
             this.omega += ans.newOmega;
-
-            this.pos.x =  this.l * Math.sin(this.theta);
-            this.pos.y = -this.l * Math.cos(this.theta);
         }
+
+        this.pos.x =  this.l * Math.sin(this.theta);
+        this.pos.y = -this.l * Math.cos(this.theta);
     }
 
     draw(drawer) {
