@@ -1,7 +1,7 @@
 // CUSTOM CONFIG
 const config = {
 	massDrawSize  : 15,			// drawing radius of a particle
-	simuSpeed: 2,
+	simuSpeed: 1,
 	plotter: {
 		scale : { // graph from x units on each side
 			x : 10,
@@ -26,7 +26,8 @@ let currentDate = beginDate;
 let plotter;
 
 function setup() {
-	createCanvas(windowWidth * 0.99, windowHeight * 0.99);
+	let canvas = createCanvas(windowWidth * 0.99, windowHeight * 0.5);
+	canvas.parent('p5canvas');
 
 	plotter = new Plotter(config.plotter);
 }
@@ -41,4 +42,8 @@ function draw() {
 
 	plotter.update(ellapsedT / 1000);
 	plotter.draw();
+}
+
+function windowResized() {
+	resizeCanvas(windowWidth * 0.99, windowHeight * 0.5);
 }

@@ -7,13 +7,15 @@
 		<style>
 			body {
 				margin: 0;
-				text-align: center;
 				background-color: black;
+				color: white;
+			}
+			#p5canvas {
+				text-align: center;
 			}
 		</style>
 
-		<script src="p5.min.js"></script>
-		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
 
 		<script src="sketch.js"></script>
 
@@ -23,5 +25,36 @@
 	</head>
 
 	<body>
+		<div id="p5canvas">
+		</div>
+		<div class="buttons">
+			<div class="b-simulations">
+				<p>Types de simulations :</p>
+				<div class="methods">
+					<label>Simulation exacte : <input type="checkbox" checked="true" /></label>
+					<label>Méthode d'Euler explicite : <input type="checkbox" checked="true" /></label>
+					<label>Méthode de Runge-Kutta 4 : <input type="checkbox" checked="true" /></label>
+					<label>Méthode de Verlet : <input type="checkbox" checked="true" /></label>
+				</div>
+			</div>
+
+			<div class="b-sliders">
+				<label>Vitesse de simulation (x1) :
+					<input type="range" min="0.01" max="20" value="1" class="slider" id="simuSpeedSlider" />
+				</label>
+
+				<label>Longueur du fil (6 m) :
+					<input type="range" min="0.01" max="15" value="1" class="slider" id="filLengthSlider" />
+				</label>
+
+				<label>Masse de l'objet (1 kg) :
+					<input type="range" min="0.01" max="100" value="1" class="slider" id="massWSlider" />
+				</label>
+			</div>
+
+			<div class="b-other">
+				<label>Affichage du repère : <input type="checkbox" checked="false" /></label>
+			</div>
+		</div>
 	</body>
 </html>
