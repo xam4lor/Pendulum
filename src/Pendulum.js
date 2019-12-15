@@ -5,11 +5,14 @@ class Pendulum {
 
         this.color = color;
         this.simuMethod = simuMethod;
-        if(simuMethod == "real")
+
+        if(simuMethod == "real") {
             if(theta0 > 1)
                 console.error(`The pendulum real simulation is only valuable if theta = ${theta0} << 1 rad`);
             else if(theta0 > 0.1)
                 console.warn(`The pendulum real simulation is a good approximation if theta = ${theta0} < 0.1 rad`);
+        }
+
 
         this.theta0 = theta0;
         this.omega0 = 0;
@@ -33,10 +36,14 @@ class Pendulum {
                 air: 1.5 * Math.pow(10, -5),
                 huile: 0.1
             },
-            R: this.m * config.massDrawSize, // surface
+            R: this.m * this.getMassDrawSize() // surface
         };
 
         this.puls = Math.sqrt(this.c.g / this.l); // pulsation omega0
+    }
+
+    getMassDrawSize() {
+        return getCustomConfig().massDrawSize;
     }
 
 
@@ -112,15 +119,14 @@ class Pendulum {
     }
 
     draw(drawer) {
-        let centerPos = drawer.computeForXY(0, 0);
-        let drawPos   = drawer.computeForXY(this.pos.x, this.pos.y);
+        drawer
+            .noFill()
+            .stroke(this.color)
+            .line(0, 0, this.pos.x, this.pos.y)
 
-        noFill();
-        stroke(this.color);
-        line(centerPos.x, centerPos.y, drawPos.x, drawPos.y);
-
-        noStroke();
-        fill(this.color);
-        ellipse(drawPos.x, drawPos.y, this.m * config.massDrawSize, this.m * config.massDrawSize);
+            .noStroke()
+            .fill(this.color)
+            .ellipse(this.pos.x, this.pos.y, this.m * this.getMassDrawSize(), this.m * this.getMassDrawSize())
+        ;
     }
 }
